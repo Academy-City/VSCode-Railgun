@@ -1,0 +1,90 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Railgun",
+	"patterns": [
+		{ "include": "#builtins" },
+		{ "include": "#strings" },
+		{ "include": "#comment" },
+		{ "include": "#types" },
+		{ "include": "#constants" },
+		{ "include": "#keywords" }
+	],
+	"repository": {
+		"builtins": {
+			"patterns": [{
+				"name": "keyword.control.railgun",
+				"match": "\\b(if|while|for|let|foreach|fn|do|def|struct|macro)\\b"
+			}]
+		},
+		"types": {
+			"patterns": [{
+				"name": "support.class.railgun",
+				"match": "\\b([A-Z]\\w*)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.railgun",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.railgun",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comment": {
+			"begin": "(?<!\\\\);",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.railgun"
+				}
+			},
+			"end": "$",
+			"name": "comment.line.semicolon.railgun"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.operator.railgun",
+				"match": "(:\\w+)"
+			}]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"match": "\\b(nil)\\b",
+					"name": "constant.language.nil.railgun"
+				},
+				{
+					"match": "\\b(true|false)\\b",
+					"name": "constant.language.boolean.railgun"
+				},
+				{
+					"match": "(-?0[xX][0-9a-fA-F]+)",
+					"name": "constant.numeric.hexadecimal.railgun"
+				},
+				{
+					"match": "(-?o\\d+)",
+					"name": "constant.numeric.octal.railgun"
+				},
+				{
+					"match": "(-?\\d+\\.\\d+([eE][+-]?\\d+)?M)",
+					"name": "constant.numeric.bigdecimal.railgun"
+				},
+				{
+					"match": "(-?\\d+\\.\\d+([eE][+-]?\\d+)?)",
+					"name": "constant.numeric.double.railgun"
+				},
+				{
+					"match": "(-?\\d+N)",
+					"name": "constant.numeric.bigint.railgun"
+				},
+				{
+					"match": "(-?\\d+)",
+					"name": "constant.numeric.long.railgun"
+				}
+			]
+		}
+	},
+	"scopeName": "source.railgun"
+}
